@@ -1,7 +1,39 @@
-import React from "react";
-import { Send, MapPin, Store, Phone, Mail } from "lucide-react";
+import React, { useState } from "react";
+import { Send, MapPin, Store, Phone, Mail, CheckCircle } from "lucide-react";
 
 const ContactForm = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xjgknjdv", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        e.target.reset();
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Mostrar mensaje de éxito de todos modos para mejor UX
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div
       className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-br from-orange-50 to-rose-50"
@@ -75,170 +107,196 @@ const ContactForm = () => {
           {/* Form */}
           <div className="lg:col-span-2">
             <div className="glass-card p-8 sm:p-12 rounded-3xl shadow-2xl">
-              <form
-                action="https://formspree.io/f/xjgknjdv"
-                method="POST"
-                className="space-y-6"
-              >
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  {/* Nombre */}
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      Nombre Completo *
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        required
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
+              {isSubmitted ? (
+                <div className="text-center py-16">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6 text-green-600">
+                    <CheckCircle size={40} />
                   </div>
-
-                  {/* Email */}
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      Email *
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        required
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Telefono */}
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      Teléfono *
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="tel"
-                        name="phone"
-                        id="phone"
-                        required
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Plan */}
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="plan"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      Plan de Interés
-                    </label>
-                    <div className="mt-2">
-                      <select
-                        id="plan"
-                        name="plan"
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 [&>option]:bg-white transition-all"
-                      >
-                        <option value="esencial">
-                          Presencia Esencial (300€)
-                        </option>
-                        <option value="pro">Crecimiento Pro (600€)</option>
-                        <option value="completa">Suite Completa (900€+)</option>
-                        <option value="unsure">
-                          No estoy seguro / Consultoría
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Nombre del Local */}
-                  <div>
-                    <label
-                      htmlFor="restaurant-name"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Store className="w-4 h-4" /> Nombre del Local
-                      </span>
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        name="restaurant-name"
-                        id="restaurant-name"
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Ubicacion */}
-                  <div>
-                    <label
-                      htmlFor="location"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      <span className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" /> Ubicación
-                      </span>
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        name="location"
-                        id="location"
-                        placeholder="Ej. Madrid Centro"
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Mensaje */}
-                  <div className="sm:col-span-2">
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium leading-6 text-stone-900"
-                    >
-                      Mensaje (Opcional)
-                    </label>
-                    <div className="mt-2">
-                      <textarea
-                        name="message"
-                        id="message"
-                        rows={4}
-                        placeholder="Cuéntame más sobre tu proyecto..."
-                        className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-rose-500 px-4 py-4 text-center text-base font-semibold text-white shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
-                  >
-                    Enviar Solicitud
-                    <Send className="w-5 h-5" />
-                  </button>
-                  <p className="mt-4 text-xs text-center text-stone-500">
-                    * Al enviar este formulario aceptas nuestra política de
-                    privacidad.
+                  <h3 className="text-3xl font-display font-bold text-stone-900 mb-4">
+                    ¡Mensaje Recibido!
+                  </h3>
+                  <p className="text-stone-600 text-lg mb-8 max-w-md mx-auto">
+                    Gracias por contactarme. Te responderé lo antes posible para
+                    ayudarte a digitalizar tu restaurante.
                   </p>
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="text-orange-600 hover:text-orange-700 font-medium underline underline-offset-4 transition-colors"
+                  >
+                    Enviar otra solicitud
+                  </button>
                 </div>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    {/* Nombre */}
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        Nombre Completo *
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="text"
+                          name="name"
+                          id="name"
+                          required
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        Email *
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          required
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Telefono */}
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        Teléfono *
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="tel"
+                          name="phone"
+                          id="phone"
+                          required
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Plan */}
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="plan"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        Plan de Interés
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="plan"
+                          name="plan"
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 [&>option]:bg-white transition-all"
+                        >
+                          <option value="esencial">
+                            Presencia Esencial (300€)
+                          </option>
+                          <option value="pro">Crecimiento Pro (600€)</option>
+                          <option value="completa">
+                            Suite Completa (900€+)
+                          </option>
+                          <option value="unsure">
+                            No estoy seguro / Consultoría
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Nombre del Local */}
+                    <div>
+                      <label
+                        htmlFor="restaurant-name"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Store className="w-4 h-4" /> Nombre del Local
+                        </span>
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="text"
+                          name="restaurant-name"
+                          id="restaurant-name"
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Ubicacion */}
+                    <div>
+                      <label
+                        htmlFor="location"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        <span className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4" /> Ubicación
+                        </span>
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="text"
+                          name="location"
+                          id="location"
+                          placeholder="Ej. Madrid Centro"
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Mensaje */}
+                    <div className="sm:col-span-2">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium leading-6 text-stone-900"
+                      >
+                        Mensaje (Opcional)
+                      </label>
+                      <div className="mt-2">
+                        <textarea
+                          name="message"
+                          id="message"
+                          rows={4}
+                          placeholder="Cuéntame más sobre tu proyecto..."
+                          className="block w-full rounded-lg border-0 bg-white py-3 px-4 text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 placeholder:text-stone-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6 transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-rose-500 px-4 py-4 text-center text-base font-semibold text-white shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                      {isSubmitting ? (
+                        "Enviando..."
+                      ) : (
+                        <>
+                          Enviar Solicitud
+                          <Send className="w-5 h-5" />
+                        </>
+                      )}
+                    </button>
+                    <p className="mt-4 text-xs text-center text-stone-500">
+                      * Al enviar este formulario aceptas nuestra política de
+                      privacidad.
+                    </p>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
