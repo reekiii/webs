@@ -11,16 +11,16 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-stone-900 text-stone-300 border-t border-stone-800">
+      <footer className="bg-white text-stone-900 border-t border-stone-200">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {/* Brand */}
             <div>
-              <h3 className="text-xl font-display font-bold text-white mb-2 flex items-center gap-2">
+              <h3 className="text-xl font-display font-bold text-stone-900 mb-2 flex items-center gap-2">
                 Iker Delgado
                 <span className="w-2 h-2 rounded-full bg-gradient-to-br from-orange-600 to-rose-500"></span>
               </h3>
-              <p className="text-sm text-stone-400">
+              <p className="text-sm text-stone-600">
                 Desarrollo web para restaurantes
               </p>
             </div>
@@ -29,14 +29,14 @@ const Footer = () => {
             <div className="space-y-2">
               <a
                 href="mailto:ikerdelgras@gmail.com"
-                className="flex items-center gap-2 text-sm hover:text-orange-500 transition-colors"
+                className="flex items-center gap-2 text-sm text-stone-600 hover:text-orange-600 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span>ikerdelgras@gmail.com</span>
               </a>
               <a
-                href="tel:+34657829 03"
-                className="flex items-center gap-2 text-sm hover:text-orange-500 transition-colors"
+                href="tel:+3465782903"
+                className="flex items-center gap-2 text-sm text-stone-600 hover:text-orange-600 transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 <span>+34 657 829 03</span>
@@ -45,16 +45,16 @@ const Footer = () => {
 
             {/* Legal */}
             <div className="flex flex-col items-start md:items-end gap-3">
-              <div className="flex gap-4 text-sm">
+              <div className="flex gap-4 text-sm font-medium">
                 <button
                   onClick={() => setShowPrivacidad(true)}
-                  className="hover:text-orange-500 transition-colors cursor-pointer"
+                  className="text-stone-600 hover:text-orange-600 transition-colors cursor-pointer"
                 >
                   Privacidad
                 </button>
                 <button
                   onClick={() => setShowTerminos(true)}
-                  className="hover:text-orange-500 transition-colors cursor-pointer"
+                  className="text-stone-600 hover:text-orange-600 transition-colors cursor-pointer"
                 >
                   Términos
                 </button>

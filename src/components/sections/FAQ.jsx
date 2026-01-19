@@ -57,6 +57,11 @@ const FAQ = () => {
         "Tendrás 2-3 rondas de revisiones incluidas en todos los planes. Los cambios mayores fuera del alcance original pueden tener un costo adicional, pero siempre lo discutiremos antes.",
     },
     {
+      question: "¿Puedo contratar o cancelar el mantenimiento cuando quiera?",
+      answer:
+        "Sí, totalmente. El mantenimiento es opcional y flexible. Puedes contratarlo por meses sueltos si necesitas cambios, o dejarlo si prefieres gestionarlo tú. Si lo cancelas y vuelves meses después, simplemente reanudamos el servicio.",
+    },
+    {
       question: "¿El código es mío al final?",
       answer:
         "Sí, al finalizar el proyecto y recibir el pago completo, te entrego todo el código fuente. La web es 100% tuya, sin dependencias ni suscripciones ocultas.",
@@ -113,22 +118,6 @@ const FAQ = () => {
               )}
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 text-center p-8 rounded-2xl bg-gradient-to-r from-orange-100 to-rose-100 border border-orange-200">
-          <h3 className="text-xl font-bold text-stone-900 mb-2">
-            ¿Más preguntas?
-          </h3>
-          <p className="text-stone-700 mb-4">
-            Estoy aquí para ayudarte. Contáctame directamente.
-          </p>
-          <a
-            href="#contacto"
-            className="inline-block rounded-lg bg-gradient-to-r from-orange-600 to-rose-500 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-          >
-            Contactar Ahora
-          </a>
         </div>
       </div>
     </section>
