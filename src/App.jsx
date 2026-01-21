@@ -4,7 +4,7 @@ import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
 import BeforeAfter from "./components/sections/BeforeAfter";
 import ValueProposition from "./components/sections/ValueProposition";
-import Portfolio from "./components/sections/Portfolio";
+import EarlyAdopters from "./components/sections/EarlyAdopters";
 import WorkProcess from "./components/sections/WorkProcess";
 import ProofOfConcept from "./components/sections/ProofOfConcept";
 import Testimonials from "./components/sections/Testimonials";
@@ -20,13 +20,13 @@ function App() {
       <Header />
       <Hero />
       <About />
-      <BeforeAfter />
       <ValueProposition />
-      <Portfolio />
-      <WorkProcess />
+      <EarlyAdopters />
       <ProofOfConcept />
-      <Testimonials />
+      <WorkProcess />
+      <BeforeAfter />
       <Pricing />
+      <Testimonials />
       <FAQ />
       <ContactForm />
       <Footer />

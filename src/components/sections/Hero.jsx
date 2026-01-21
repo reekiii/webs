@@ -19,7 +19,7 @@ const AnimatedCounter = ({ end, suffix = "", duration = 2000 }) => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (counterRef.current) observer.observe(counterRef.current);
@@ -69,7 +69,7 @@ const Hero = () => {
 
         {/* Main Heading */}
         <h1
-          className="text-5xl sm:text-7xl lg:text-9xl font-display font-extrabold tracking-tight text-stone-900 mb-8 leading-[1.1] animate-fadeIn"
+          className="text-4xl sm:text-6xl lg:text-9xl font-display font-extrabold tracking-tight text-stone-900 mb-6 sm:mb-8 leading-[1.1] animate-fadeIn px-2 sm:px-0"
           style={{ animationDelay: "0.1s" }}
         >
           Basta de Pagar

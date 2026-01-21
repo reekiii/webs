@@ -18,7 +18,7 @@ const AnimatedCounter = ({
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (counterRef.current) {
@@ -42,7 +42,9 @@ const AnimatedCounter = ({
 
       const currentCount = progress * end;
       setCount(
-        decimals > 0 ? currentCount.toFixed(decimals) : Math.floor(currentCount)
+        decimals > 0
+          ? currentCount.toFixed(decimals)
+          : Math.floor(currentCount),
       );
 
       if (progress < 1) {
@@ -63,22 +65,33 @@ const AnimatedCounter = ({
 
 const ProofOfConcept = () => {
   return (
-    <section className="bg-white py-24 sm:py-32 relative overflow-hidden">
+    <section
+      className="bg-white py-24 sm:py-32 relative overflow-hidden"
+      id="caso-real"
+    >
       <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-orange-300 to-transparent top-0"></div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-100 to-rose-100 border border-orange-200 text-orange-700 text-sm font-semibold mb-6">
-              <Rocket className="w-4 h-4" /> Caso de Éxito Real
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border-2 border-green-300 text-green-700 text-sm font-bold mb-6 shadow-sm">
+              <Rocket className="w-4 h-4" />✓ Caso de Éxito Real
             </div>
             <h2 className="text-4xl font-display font-bold tracking-tight text-stone-900 mb-6">
               Rendimiento <span className="gradient-text">demostrado</span>.
             </h2>
             <p className="text-lg text-stone-600 mb-4 leading-relaxed">
               He llevado el rendimiento al límite en{" "}
-              <strong className="text-stone-900">SaltySoulTrips</strong>. No es
-              solo una web bonita, es una máquina de conversión optimizada.
+              <a
+                href="https://saltysoultrips.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-orange-600 hover:text-orange-700 underline decoration-2 underline-offset-2"
+              >
+                SaltySoulTrips
+              </a>
+              . No es solo una web bonita, es una máquina de conversión
+              optimizada.
             </p>
             <p className="text-lg text-stone-600 mb-8 leading-relaxed">
               Esa misma arquitectura y metodología es la que implemento en cada

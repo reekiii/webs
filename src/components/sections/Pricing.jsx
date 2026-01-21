@@ -47,22 +47,6 @@ const tiers = [
     ],
     mostPopular: false,
   },
-  {
-    name: "Mantenimiento Premium",
-    id: "tier-maintenance",
-    href: "#contacto",
-    price: "30€/mes",
-    description: "Despreocúpate de todo lo técnico",
-    features: [
-      "Cambios en la Carta (ilimitados)",
-      "Actualizaciones de Seguridad",
-      "Copias de Seguridad Automáticas",
-      "Renovación de Hosting Anual",
-      "Soporte Técnico Prioritario",
-    ],
-    mostPopular: false,
-    isRecurring: true,
-  },
 ];
 
 const Pricing = () => {
@@ -72,21 +56,22 @@ const Pricing = () => {
       id="tarifas"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="mx-auto max-w-2xl text-center mb-16 animate-fadeIn">
-          <h2 className="text-base font-semibold leading-7 text-orange-600 uppercase tracking-wide">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-sm font-semibold mb-6 shadow-sm">
+            <ShieldCheck className="w-4 h-4" />
             Tarifas Claras
-          </h2>
-          <p className="mt-2 text-4xl font-display font-bold text-stone-900 sm:text-5xl">
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-stone-900 mb-6">
             Inversión Única.{" "}
             <span className="gradient-text">Sin Alquileres.</span>
-          </p>
-          <p className="mt-6 text-lg leading-8 text-stone-600">
+          </h2>
+          <p className="text-lg text-stone-600 max-w-2xl mx-auto">
             Adquieres un activo digital para tu negocio. El código es tuyo, sin
             suscripciones mensuales ocultas ni comisiones por ventas.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           {tiers.map((tier) => (
             <div
               key={tier.id}
@@ -150,6 +135,62 @@ const Pricing = () => {
               </a>
             </div>
           ))}
+        </div>
+
+        {/* Optional Maintenance Section */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-rose-400 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+            <div className="relative bg-gradient-to-br from-orange-50 to-rose-50 rounded-3xl p-6 sm:p-8 border-2 border-orange-200">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-orange-600 to-rose-500 flex items-center justify-center shadow-lg">
+                    <Server className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1 w-full">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-stone-900">
+                      Mantenimiento Opcional
+                    </h3>
+                    <span className="inline-block px-3 py-1 bg-orange-600 text-white text-xs font-bold rounded-full w-fit">
+                      30€/mes
+                    </span>
+                  </div>
+                  <p className="text-stone-600 mb-6">
+                    Despreocúpate de todo lo técnico. Servicio opcional que
+                    puedes contratar o cancelar cuando quieras.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2 text-sm text-stone-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Cambios en la Carta (ilimitados)</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-stone-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Actualizaciones de Seguridad</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-stone-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Copias de Seguridad Automáticas</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-stone-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Renovación de Hosting Anual</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-stone-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>Soporte Técnico Prioritario</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-stone-500 mt-4 italic">
+                    💡 Totalmente flexible: contrata solo cuando lo necesites,
+                    cancela cuando quieras.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

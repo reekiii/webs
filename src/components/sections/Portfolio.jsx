@@ -6,57 +6,28 @@ import {
   BarChart3,
   Clock,
   Users,
+  ArrowRight,
 } from "lucide-react";
 
 const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      name: "La Terracita",
-      type: "Restaurante Mediterráneo",
-      location: "Barcelona",
+      name: "Salty Soul Trips",
+      type: "Agencia de Viajes Online",
+      location: "Web Completa",
       description:
-        "Web moderna con reservas online integradas y menú digital. Aumento del 45% en reservas tras el lanzamiento.",
+        "Proyecto web profesional con sistema de reservas integrado, blog de contenido y optimización SEO completa. Demuestra mi capacidad técnica en React, diseño responsive y performance.",
       metrics: {
         speed: "99",
-        conversion: "+45%",
-        traffic: "+120%",
+        responsive: "100%",
+        seo: "Optimizado",
       },
       image:
-        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
-      tags: ["Reservas Online", "SEO Local", "Menú Digital"],
-    },
-    {
-      id: 2,
-      name: "Asador El Rincón",
-      type: "Asador de Carnes",
-      location: "Madrid",
-      description:
-        "Landing page optimizada con galería visual de platos y sistema de pedidos. Mejora del 60% en visibilidad Google.",
-      metrics: {
-        speed: "98",
-        conversion: "+38%",
-        traffic: "+85%",
-      },
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-      tags: ["Pedidos Online", "Fotografía Pro", "Google Maps"],
-    },
-    {
-      id: 3,
-      name: "Sabor Auténtico",
-      type: "Cocina Tradicional",
-      location: "Valencia",
-      description:
-        "Presencia digital completa con blog de recetas y newsletter. Duplicó su base de clientes recurrentes en 3 meses.",
-      metrics: {
-        speed: "100",
-        conversion: "+52%",
-        traffic: "+140%",
-      },
-      image:
-        "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80",
-      tags: ["Blog", "Email Marketing", "Redes Sociales"],
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80",
+      tags: ["React + Vite", "Responsive", "SEO", "Reservas Online"],
+      isReal: true,
+      url: "https://saltysoultrips.com",
     },
   ];
 
@@ -74,29 +45,39 @@ const Portfolio = () => {
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200 text-orange-600 text-sm font-semibold mb-6 shadow-sm">
             <Star className="w-4 h-4 fill-orange-600" />
-            Casos de Éxito
+            Mi Trabajo
           </div>
           <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-stone-900 mb-6">
-            Restaurantes que ya{" "}
+            Proyecto Real:{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-rose-600">
-              triunfan online
+              Salty Soul Trips
             </span>
           </h2>
           <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-            Estos restaurantes confiaron en mí para llevar su negocio al mundo
-            digital. <strong>Los resultados hablan por sí solos.</strong>
+            Web profesional que demuestra mi capacidad técnica. Las mismas
+            skills que aplico ahora a <strong>restaurantes</strong>: diseño
+            moderno, performance óptimo y funcionalidades avanzadas.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-2xl mx-auto mb-16">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative bg-white rounded-3xl overflow-hidden border border-stone-200 hover:border-orange-300 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+              className="group relative bg-white rounded-3xl overflow-hidden border-2 border-orange-300 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
+              {/* Real Project Badge */}
+              {project.isReal && (
+                <div className="absolute top-4 right-4 z-10">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-bold text-white shadow-lg">
+                    ✓ Proyecto Real
+                  </span>
+                </div>
+              )}
+
               {/* Image */}
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
@@ -106,7 +87,7 @@ const Portfolio = () => {
                 <div className="absolute bottom-4 left-6 right-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-1 font-display">
+                      <h3 className="text-3xl font-bold text-white mb-1 font-display">
                         {project.name}
                       </h3>
                       <p className="text-sm text-stone-200 font-medium">
@@ -118,56 +99,87 @@ const Portfolio = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <p className="text-stone-600 text-sm mb-6 leading-relaxed">
+              <div className="p-8">
+                <p className="text-stone-600 text-base mb-6 leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  <div className="text-center p-3 bg-stone-50 rounded-xl border border-stone-100 group-hover:border-orange-100 transition-colors">
-                    <Clock className="w-4 h-4 text-orange-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-stone-900 mb-0.5">
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  <div className="text-center p-4 bg-stone-50 rounded-xl border border-stone-100">
+                    <Clock className="w-5 h-5 text-orange-500 mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-stone-900 mb-1">
                       {project.metrics.speed}
                     </div>
-                    <div className="text-[10px] uppercase tracking-wider text-stone-500 font-bold">
-                      Speed
+                    <div className="text-xs uppercase tracking-wider text-stone-500 font-bold">
+                      PageSpeed
                     </div>
                   </div>
-                  <div className="text-center p-3 bg-stone-50 rounded-xl border border-stone-100 group-hover:border-orange-100 transition-colors">
-                    <TrendingUp className="w-4 h-4 text-emerald-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-stone-900 mb-0.5">
-                      {project.metrics.conversion}
+                  <div className="text-center p-4 bg-stone-50 rounded-xl border border-stone-100">
+                    <TrendingUp className="w-5 h-5 text-emerald-500 mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-stone-900 mb-1">
+                      {project.metrics.responsive}
                     </div>
-                    <div className="text-[10px] uppercase tracking-wider text-stone-500 font-bold">
-                      Conv.
+                    <div className="text-xs uppercase tracking-wider text-stone-500 font-bold">
+                      Responsive
                     </div>
                   </div>
-                  <div className="text-center p-3 bg-stone-50 rounded-xl border border-stone-100 group-hover:border-orange-100 transition-colors">
-                    <Users className="w-4 h-4 text-blue-500 mx-auto mb-2" />
-                    <div className="text-lg font-bold text-stone-900 mb-0.5">
-                      {project.metrics.traffic}
+                  <div className="text-center p-4 bg-stone-50 rounded-xl border border-stone-100">
+                    <Users className="w-5 h-5 text-blue-500 mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-stone-900 mb-1">
+                      {project.metrics.seo}
                     </div>
-                    <div className="text-[10px] uppercase tracking-wider text-stone-500 font-bold">
-                      Tráfico
+                    <div className="text-xs uppercase tracking-wider text-stone-500 font-bold">
+                      SEO
                     </div>
                   </div>
                 </div>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full font-medium"
+                      className="text-xs px-3 py-1.5 bg-orange-50 text-orange-700 rounded-full font-semibold border border-orange-200"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
+
+                {/* Visit Site Button */}
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-600 to-rose-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all hover:scale-105"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Ver Sitio Web
+                  </a>
+                )}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Next Project CTA */}
+        <div className="text-center p-12 bg-gradient-to-br from-orange-50 to-rose-50 rounded-3xl border-2 border-dashed border-orange-300">
+          <h3 className="text-3xl font-display font-bold text-stone-900 mb-4">
+            Tu Restaurante Será el Próximo
+          </h3>
+          <p className="text-lg text-stone-600 mb-6 max-w-xl mx-auto">
+            Aplico la misma calidad técnica y atención al detalle a tu proyecto
+            de restaurante.
+          </p>
+          <a
+            href="#contacto"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-600 to-rose-600 text-white font-bold rounded-xl hover:shadow-xl transition-all hover:scale-105"
+          >
+            Empecemos Tu Proyecto
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </div>
     </section>

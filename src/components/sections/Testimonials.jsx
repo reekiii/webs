@@ -18,12 +18,16 @@ const Testimonials = () => {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-base font-semibold leading-7 text-orange-600 uppercase tracking-wide">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-sm font-semibold mb-6 shadow-sm">
+            <Quote className="w-4 h-4" />
             Testimonios
-          </h2>
-          <p className="mt-2 text-4xl font-display font-bold tracking-tight text-stone-900 sm:text-5xl">
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-stone-900 mb-6">
             Lo que dicen mis <span className="gradient-text">clientes</span>
+          </h2>
+          <p className="text-lg text-stone-600 max-w-2xl mx-auto">
+            Resultados reales de proyectos completados con éxito.
           </p>
         </div>
 

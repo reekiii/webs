@@ -16,9 +16,11 @@ const Header = () => {
   const navLinks = [
     { name: "Inicio", href: "#inicio" },
     { name: "Sobre Mí", href: "#sobre-mi" },
-    { name: "Portfolio", href: "#portfolio" },
+    { name: "Servicios", href: "#servicios" },
+    { name: "Caso Real", href: "#caso-real" },
     { name: "Proceso", href: "#proceso" },
     { name: "Tarifas", href: "#tarifas" },
+    { name: "FAQ", href: "#faq" },
     { name: "Contacto", href: "#contacto" },
   ];
 
@@ -46,7 +48,7 @@ const Header = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-sm font-medium text-stone-700 hover:text-orange-600 transition-colors relative group"
+                className="px-4 py-2 text-sm font-medium text-stone-700 hover:text-orange-600 transition-colors relative group whitespace-nowrap"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-600 to-rose-500 group-hover:w-full transition-all duration-300"></span>
@@ -57,7 +59,7 @@ const Header = () => {
           {/* CTA Button */}
           <a
             href="#contacto"
-            className="hidden md:block rounded-xl bg-gradient-to-r from-orange-600 to-rose-500 px-6 py-3 text-sm font-semibold text-white hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="hidden md:inline-block rounded-xl bg-gradient-to-r from-orange-600 to-rose-500 px-6 py-3 text-sm font-semibold text-white hover:shadow-lg hover:scale-105 transition-all duration-300 whitespace-nowrap"
           >
             Empezar Proyecto
           </a>

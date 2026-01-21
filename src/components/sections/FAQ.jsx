@@ -8,7 +8,12 @@ const FAQ = () => {
     {
       question: "¿Cuánto tiempo tarda el desarrollo de mi web?",
       answer:
-        "Dependiendo del plan elegido, el desarrollo puede tomar entre 1-2 semanas (Starter), 2-3 semanas (Growth), o 3-4 semanas (Enterprise). Siempre te mantendré informado del progreso.",
+        "Entre 1-3 semanas según la complejidad del proyecto y mi carga de trabajo actual. Te informo del plazo exacto al contactar. Trabajo con atención personalizada para garantizar calidad.",
+    },
+    {
+      question: "¿Tienes experiencia con restaurantes?",
+      answer:
+        "Estoy especializándome en este sector. Tengo experiencia creando webs profesionales (puedes ver Salty Soul Trips como ejemplo de mi trabajo) y ahora enfoco mi expertise técnico en restaurantes. Por eso ofrezco condiciones especiales a los primeros clientes.",
     },
     {
       question: "¿Incluye hosting y dominio?",
@@ -111,11 +116,17 @@ const FAQ = () => {
                 </span>
               </button>
 
-              {openIndex === index && (
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  openIndex === index
+                    ? "max-h-96 opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
                 <div className="px-6 pb-6 pt-2 bg-orange-50/50">
                   <p className="text-stone-700 leading-relaxed">{faq.answer}</p>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
